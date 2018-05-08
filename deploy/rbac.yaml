@@ -1,16 +1,30 @@
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
-  name: vault-operator
+  name: vault-operator-role
 rules:
 - apiGroups:
-  - vault.k8s-sdk-operators.lugs.org
+  - etcd.database.coreos.com
   resources:
-  - "*"
+  - etcdclusters
+  - etcdbackups
+  - etcdrestores
   verbs:
   - "*"
 - apiGroups:
-  - ""
+  - vault.k8s-sdk-operators.lugs.org
+  resources:
+  - vaultservices
+  verbs:
+  - "*"
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - storageclasses
+  verbs:
+  - "*"
+- apiGroups:
+  - "" # "" indicates the core API group
   resources:
   - pods
   - services
@@ -25,9 +39,6 @@ rules:
   - apps
   resources:
   - deployments
-  - daemonsets
-  - replicasets
-  - statefulsets
   verbs:
   - "*"
 
@@ -36,11 +47,12 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
-  name: default-account-vault-operator
+  name: vault-operator-rolebinding
 subjects:
 - kind: ServiceAccount
   name: default
+  namespace: default
 roleRef:
   kind: Role
-  name: vault-operator
+  name: vault-operator-role
   apiGroup: rbac.authorization.k8s.io

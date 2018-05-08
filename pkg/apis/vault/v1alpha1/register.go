@@ -9,8 +9,9 @@ import (
 )
 
 const (
-	version   = "v1alpha1"
-	groupName = "vault.k8s-sdk-operators.lugs.org"
+	version          = "v1alpha1"
+	groupName        = "vault.k8s-sdk-operators.lugs.org"
+	VaultServiceKind = "VaultService"
 )
 
 var (
