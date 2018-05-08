@@ -1,0 +1,5 @@
+# Folders
+vendor/
+tmp/_output/
+tmp/_test/
+.vscode/
