@@ -1,4 +1,0 @@
-apiVersion: "vault.k8s-sdk-operators.lugs.org/v1alpha1"
-kind: "VaultService"
-metadata:
-  name: "example"

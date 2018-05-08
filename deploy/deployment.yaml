@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: vault-operator
+  template:
+    metadata:
+      labels:
+        name: vault-operator
+    spec:
+      containers:
+        - name: vault-operator
+          image: quay.io/jkevlin/vault-operator
+          command:
+          - vault-operator
+          imagePullPolicy: IfNotPresent
